@@ -1,0 +1,7 @@
+.rightbar{
+    background: #efefef;
+    flex-basis: 25%;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+}

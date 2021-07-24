@@ -1,0 +1,153 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'ginfo/default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'ginfo/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'ginfo/tools.css' %}">
+<style>
+  div.wrapper {
+    position: relative;
+    clear: both;
+    width: 80%;
+    margin: 0 auto;
+    overflow:auto;
+    display: flex;
+    flex-direction: column;
+  }		
+  .table__container{
+    position: sticky;
+    top: 100px;
+    margin: 0 auto;
+    width: 100%;
+
+  } 
+  .table{
+    font-size: 15px;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;  
+  }
+
+  .table tr:nth-child(odd){
+    background-color: #BBCAE4;
+  }
+
+  .table tr:nth-child(even){
+    background-color: #dae5f4;
+  }
+
+  .table th{
+    background-color: #337ab7;
+    color: white;
+  }
+  tbody{
+    overflow-y: auto;
+  }
+  th, td{
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+  }
+  td:first-child{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  td:first-child img{
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+  }
+  
+
+  .sort_field{    
+    flex-basis: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: auto;
+  }
+  .sort_field label{
+    font-size: 20px;
+  }
+  .dropdown{
+    outline: none;
+    margin: 10px;
+    font-size: 20px;
+  
+  }
+  .sort_field option:hover{
+    background: #337ab7;
+  }
+  
+  .sort_field input{
+    font-size: 20px;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+  }
+  a{
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+</style>
+</head>
+<body>
+  {% include "ginfo/navbar.html" %}
+  <div class="wrapper">
+    <div class="tools left" style="top: 0; width: 100%;">
+      <div class="search_field">
+        <form name="index_search_form" method="POST" action="/ginfo/">
+          {% csrf_token %}
+          <input id="search_field" type="text" name="search_field" value="">
+          <input id="submit_search" type="submit" value="Search" />
+        </form>
+      </div>
+
+
+      <form class="sort_field" action="/ginfo/" method="post"> {% csrf_token %}
+          <label for="sort_method">SORT BY</label>
+          <select class="dropdown" name="sort_method" required>
+            <option value="name">Name</option>
+            <option value="designation">Designation</option>
+            <option value="department">Department</option>
+          </select>
+        <input type="submit" value="SORT"/>
+      </form>
+
+    </div>
+
+    <div class="table__container right" style="overflow-x:auto;">
+      <table style="width: 100%;">
+        <tbody>
+            <thead>
+            <th>Google Scholar</th>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>info</th>
+            </thead>
+            {% for gscholar in scholars %}
+            <tr>
+                <td>
+                  <img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{gscholar.id}}&citpid=1"/>
+                  <strong><a href="/ginfo/{{gscholar.id}}">{{gscholar.name}}</a></strong>
+                </td>
+                <td>{{gscholar.designation}}</td>
+                <td>{{gscholar.department}}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+</body>
+</html>

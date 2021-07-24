@@ -1,0 +1,4 @@
+db.sqlite3
+gscholars/__pycache__/
+ginfo/__pycache__/
+ginfo/migrations

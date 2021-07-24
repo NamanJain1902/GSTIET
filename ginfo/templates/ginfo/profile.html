@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/jpg" href="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{scholar.id}}&citpid=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'ginfo/default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ginfo/profilePage/sidebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ginfo/profilePage/profilebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'ginfo/profilePage/rightbar.css' %}">
+    <title>{{scholar.name}}</title>
+</head>
+<body>
+    {% include "ginfo/navbar.html" %}
+
+    <div class="container">
+            <div class="sidebar">
+                <div class="sidebar__content">
+                    <div>
+                        <img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{scholar.id}}&citpid=1"/>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="list-items"><a href="" ><i class="fa fa-desktop"></i>Profile</a></li>
+                            <li class="list-items"><a href="" ><i class="fa fa-user"></i>Personal Information</a></li>
+                            <li class="list-items"><a href="" ><i class="fa fa-lightbulb-o"></i>Expertise</a></li>
+                            <li class="list-items"><a href="" ><i class="fa fa-clipboard"></i>Publications</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="profilebar" style="height: 100%;">
+                <div class="profilebar__content">
+                    
+                    {% for data in scholar.scholars.all %}
+                        <h1>{{data}}</h1>
+                    {% endfor %}
+                        
+                </div>
+            </div>
+            <div class="rightbar"></div>
+
+
+    </div>
+
+</body>
+</html>

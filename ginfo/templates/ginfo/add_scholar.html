@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'ginfo/add_scholar.css' %}">
+    <title>TIET</title>
+</head>
+<body>
+    {% include "ginfo/navbar.html" %}
+    {% for message in messages %}
+    {%if message == "error"%}
+        <div class="alert {{message}}">
+    {% endif %}
+        <div{% if message.tags %} class="{{ message }}"{% endif %}>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                {%if message == "error"%}
+                    <strong>ERROR!</strong> {{ message }}
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    
+    <div class="add_form">
+        <form method="POST" action="/ginfo/add_scholar/">
+            {% csrf_token %}
+            <input id="entry_field" type="text" name="gscholar_id" placeholder="Enter Google Scholar ID..." value="" style="font-size: 20px;">
+            <input id="submit_add" type="submit" value="Add" />
+        </form>
+    </div>
+</body>
+</html>

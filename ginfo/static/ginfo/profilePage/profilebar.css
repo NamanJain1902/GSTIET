@@ -1,0 +1,9 @@
+.profilebar{
+    padding: 20px;
+    height: 100%;
+    background: #efefef;
+    flex-basis: 47%;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+}

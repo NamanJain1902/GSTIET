@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'ginfo/scholars_list.css' %}">
+
+<style>
+
+</style>
+</head>
+<body>
+    {% include "ginfo/navbar.html" %}
+
+    <div class="row">
+        {% for gscholar in scholars %}
+            <div class="column">
+                <div class="our-team">
+                    <div class="picture" style="vertical-align: middle;" >
+                        <img class="img-fluid" src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{gscholar.id}}&citpid=4" alt="">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="name">{{gscholar.department}}</h3>
+                        <h4 class="title">{{gscholar.designation}}</h4>
+                        <a href="/ginfo/{{gscholar.id}}"></a>
+                            <input
+                                type="submit"
+                                value="View"
+                                class="view"
+                                type="button"
+                            />
+                        </a>  
+                    </div>
+                </div>
+            </div>
+        {% endfor%}
+    </div>
+
+</body>
+</html>
