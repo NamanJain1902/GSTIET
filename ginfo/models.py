@@ -22,7 +22,8 @@ class Scholar(models.Model):
     #         self.save()
     class Meta:
         ordering = ['name']
-
+        verbose_name_plural = 'Google Scholars'
+    
     def __str__(self):
         return str(self.name)
 
