@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
 from bs4 import BeautifulSoup
@@ -6,7 +7,7 @@ import requests
 from .models import Scholar, Citation
 from .forms import *
 # Create your views here.
-    
+
 def index(request):
     try:
         scholars_set = Scholar.objects.all()
@@ -14,9 +15,7 @@ def index(request):
         if request.method == 'POST':
             if request.POST.get('search_field', ''):
                 search_field = request.POST.get('search_field', '')
-                scholars_set = Scholar.objects.filter(name__icontains=search_field,
-                                                    designation__icontains=search_field,
-                                                    department__icontains=search_field)
+                scholars_set = Scholar.objects.filter(name__icontains=search_field)
             
             if request.POST.get('sort_method', None):
                 sort_criteria = request.POST.get('sort_method', None)
@@ -48,6 +47,7 @@ def sort_view(request):
     pass
 
 
+@login_required()
 def add_scholar(request):
     # id = ""
     if request.method == 'POST':
@@ -131,3 +131,7 @@ def add_scholar(request):
                 messages.success(request, "success")
 
     return render(request, "ginfo/add_scholar.html")
+
+
+def login(request):
+    return render(request, 'ginfo/login_register.html')
