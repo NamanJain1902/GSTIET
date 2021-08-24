@@ -27,14 +27,16 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'enter-your-secret-key'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'error_handler.apps.ErrorHandlerConfig',
+    'dashboard.apps.DashboardConfig',
     'loginout.apps.LoginoutConfig',
     'ginfo.apps.GinfoConfig',
     'django.contrib.admin',

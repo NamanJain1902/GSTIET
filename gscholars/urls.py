@@ -9,4 +9,9 @@ urlpatterns = [
     path('ginfo/', include('ginfo.urls')),
 ]
 
+handler404 = 'error_handler.views.page_not_found'
+handler400 = 'error_handler.views.bad_request'
+handler403 = 'error_handler.views.permission_denied'
+handler500 = 'error_handler.views.server_error'
+
 urlpatterns += staticfiles_urlpatterns()
