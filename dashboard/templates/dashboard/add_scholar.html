@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% load static  %}
+{% block title %} Add Scholar {% endblock %} 
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard/admin_dashboard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard/add_scholar.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+{% for message in messages %}
+    {%if message == "error"%}
+        <div class="alert {{message}}">
+    {% endif %}
+        <div{% if message.tags %} class="{{ message }}"{% endif %}>
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                {%if message == "error"%}
+                    <strong>ERROR!</strong> {{ message }}
+                {% endif %}
+            </div>
+        </div>
+{% endfor %}
+    
+    <div class="add_form">
+        <form method="POST" action="/add_scholar/">
+            {% csrf_token %}
+            <input id="entry_field" type="text" name="gscholar_id" placeholder="Enter Google Scholar ID..." value="" style="font-size: 20px;">
+            <input id="submit_add" type="submit" value="Add" />
+        </form>
+    </div>
+{% endblock content %}

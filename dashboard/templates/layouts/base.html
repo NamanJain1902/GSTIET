@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Site favicon -->
+    <!-- <link rel="icon" type="image/png" href="/static/assets/img/favicon.png"> -->
+    
+    <!--     Fonts and icons     -->
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>    
+        {% block title %}{% endblock %}
+    </title>
+
+    <!-- Specific Page CSS block  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+</head>
+<body>
+
+    {% include "dashboard/sidebar.html" %}
+    
+    <section class="home-section">
+      {% include "dashboard/section_nav.html" with dashboard_title="Naman Jain" %}
+      <div class="home-content">
+        {% block content %}{% endblock content %}  
+      </div>
+    </section>
+  
+    <!-- Specific Page JS block -->
+    {% block javascripts %}{% endblock javascripts %}  
+</body>
+</html>

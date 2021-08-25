@@ -1,0 +1,71 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/sidebar.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+          <!-- add scholar  icon -->
+          <i class='bx bx-sidebar'></i>
+          <span class="logo_name">GSTIET</span>
+        </div>
+        <ul class="nav-links">
+        <li>
+            <a href="/dashboard" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">TODO</span>
+            </a>
+        </li>
+        <li>
+            <a href="/add_scholar">
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name">Add Scholar</span>
+            </a>
+        </li>
+        <li>
+            <a href="/analytics">
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="links_name">Analytics</span>
+            </a>
+        </li>
+        <li>
+            <a href="/messages">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Messages</span>
+            </a>
+        </li>
+        <li>
+            <a href="/favourites">
+            <i class='bx bx-star' ></i>
+            <span class="links_name">Favourites</span>
+            </a>
+        </li>
+        <li>
+            <a href="/settings">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+            </a>
+        </li>
+
+        <li class="log_out">
+            <a href="{% url 'logout' %}">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+            </a>
+        </li>
+
+        </ul>
+    </div>
+</body>
+</html>

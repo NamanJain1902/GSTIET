@@ -1,0 +1,42 @@
+{% load static %}
+
+{% block content %}
+    <nav>
+        <div class="sidebar-button">
+          <i class='bx bx-menu sidebarBtn'></i>
+          <span class="dashboard">{{dashboard_title}}</span>
+        </div>
+        <div class="search-box">
+          <!-- <input type="text" placeholder="Search..."> -->
+          <form name="index_search_form" method="POST" action="/">
+            {% csrf_token %}
+            <input id="search_field" type="text" name="search_field" value="" placeholder="Seach...">
+            <i class='bx bx-search'  id="submit_search" style="background: #0A2558; color: white;  padding:2px;" type="submit" ></i>
+          </form>
+        </div>
+        <div class="profile-details">
+          <img style="width: 50px;" src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{gscholar.id}}&citpid=1" alt=""/>
+          <span class="admin_name">Maninder Singh</span>
+          <i class='bx bx-chevron-down' ></i>
+        </div>
+    </nav>    
+  {% endblock content %}
+
+{% block javascripts %}
+
+<script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+
+    sidebarBtn.onclick = () => {
+      sidebar.classList.toggle("active");
+      
+      if(sidebar.classList.contains("active"))
+        sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+      else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    
+    }
+  </script>
+
+{% endblock javascripts %}

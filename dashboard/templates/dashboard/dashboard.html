@@ -1,0 +1,113 @@
+{% extends "layouts/base.html" %}
+{% load static  %}
+{% block title %} {{dashboard_title}} {% endblock %} 
+{% block dashboard_title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard/admin_dashboard.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="overview-boxes">
+    <div class="box">
+    <div class="right-side">
+        <div class="box-topic">Total Citations</div>
+        <div class="number">{}</div>
+        <div class="indicator">
+        <i class='bx bx-up-arrow-alt'></i>
+        <span class="text">Some nice text</span>
+        </div>
+    </div>
+    <i class='bx bxs-cart-download cart four' ></i>
+    </div>
+
+    <div class="box">
+    <div class="right-side">
+        <div class="box-topic">Total Scholars</div>
+        <div class="number">3</div>
+        <div class="indicator">
+        <i class='bx bx-up-arrow-alt'></i>
+        <span class="text">Some nice text</span>
+        </div>
+    </div>
+    <i class='bx bxs-cart-add cart two' ></i>
+    </div>
+
+    <div class="box">
+    <div class="right-side">
+        <div class="box-topic">Total Profit</div>
+        <div class="number">$12,876</div>
+        <div class="indicator">
+        <i class='bx bx-up-arrow-alt'></i>
+        <span class="text">Some nice text</span>
+        </div>
+    </div>
+    <i class='bx bx-cart cart three' ></i>
+    </div>
+
+</div>
+
+<div class="scholars-boxes">
+    <div class="recent-sales box">
+        <div class="title">Scholar's Tab</div>
+
+        <div style="display: flex; justify-content: space-between;">
+            <div class="search_field">
+            <form name="index_search_form" method="POST" action="/">
+                {% csrf_token %}
+                <input id="search_field" type="text" name="search_field" value="">
+                <input id="submit_search" style="background: #0A2558; color: white; font-weight:bold; padding:2px;" type="submit" value="Search" />
+            </form>
+            </div>
+            
+            <form action="/" method="post"> {% csrf_token %}
+                <select class="dropdown" name="sort_method" required>
+                <option value="name">Name</option>
+                <option value="designation">Designation</option>
+                <option value="department">Department</option>
+                </select>
+            <input type="submit" style="background: #0A2558; color: white; font-weight:bold; padding:2px;" value="SORT"/>
+            </form>
+        </div>
+
+        <table>
+        <tbody>
+        <thead>
+            <td class="topic" style="font-weight: bold; font-size: 20px;">Scholar</td>
+            <td class="topic" style="font-weight: bold; font-size: 20px;">Department</td>
+            <td class="topic" style="font-weight: bold; font-size: 20px;">Department</td>
+            <td class="topic" style="font-weight: bold; font-size: 20px;">Edit</td>
+        </thead>
+        {% for gscholar in scholars %}
+        <tr class="scholar_tab__tr">
+            <td style="display: flex; align-items: center;">
+                <img style="width: 50px;" src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{gscholar.id}}&citpid=1"/>
+                <strong><a href="/ginfo/{{gscholar.id}}" style="text-decoration: none;">{{gscholar.name}}</a></strong>
+            </td>
+            <td>{{gscholar.designation}}</td>
+            <td>{{gscholar.department}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="button">
+        <a href="#">See All</a>
+    </div>
+
+    </div>
+    <div class="top-sales box">
+    <div class="title">Top Citations</div>
+    <ul class="top-sales-details">
+        <li>
+        <a href="#">
+            <!--<img src="images/scholar.png" alt="">-->
+            <span class="product">GSTIET</span>
+        </a>
+        <span class="price">$1500</span>
+        </li>
+    
+    </ul>
+    </div>
+</div>
+{% endblock content %}

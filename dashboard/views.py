@@ -1,18 +1,22 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.contrib import messages
-from django.http import Http404
-from bs4 import BeautifulSoup
 import requests
-from .models import Scholar, Citation
-from .forms import *
+from bs4 import BeautifulSoup
+from ginfo.forms import *
+from ginfo.models import Scholar, Citation
+# TODO from ginfo.views import add_scholar
 # Create your views here.
 
+@login_required
 def index(request):
     try:
         scholars_set = Scholar.objects.all()
+        citations_set = Citation.objects.all()
 
-        if request.method == 'POST':
+
+        if request.method == 'POST':    
             if request.POST.get('search_field', ''):
                 search_field = request.POST.get('search_field', '')
                 scholars_set = Scholar.objects.filter(name__icontains=search_field)
@@ -24,27 +28,36 @@ def index(request):
     except Scholar.DoesNotExist:
         raise Http404("Scholar entry does not exist.")
     
-    return render(request, "ginfo/index.html", {"scholars": scholars_set})
+    context = {
+        "scholars": scholars_set,
+        # "citations" :  
+    }
+    return render(request, "dashboard/dashboard.html", context)
 
-
-def profile(request, pk):
-    scholar = Scholar.objects.get(id=pk)
-    
-    return render(request, "ginfo/profile.html", {"scholar": scholar})
-    pass
-
-
-def all(request):
+@login_required
+def dashboard(request):
     try:
         scholars_set = Scholar.objects.all()
+        citations_set = Citation.objects.all()
+
+
+        if request.method == 'POST':    
+            if request.POST.get('search_field', ''):
+                search_field = request.POST.get('search_field', '')
+                scholars_set = Scholar.objects.filter(name__icontains=search_field)
+            
+            if request.POST.get('sort_method', None):
+                sort_criteria = request.POST.get('sort_method', None)
+                scholars_set = Scholar.objects.order_by(sort_criteria)
+        
     except Scholar.DoesNotExist:
         raise Http404("Scholar entry does not exist.")
     
-    return render(request, "ginfo/scholars_list.html", {"scholars": scholars_set})
-
-
-def sort_view(request):
-    pass
+    context = {
+        "scholars": scholars_set,
+        # "citations" :  
+    }
+    return render(request, "dashboard/dashboard.html", context)
 
 
 @login_required()
@@ -130,8 +143,24 @@ def add_scholar(request):
                 
                 messages.success(request, "success")
 
-    return render(request, "ginfo/add_scholar.html")
+    return render(request, "dashboard/add_scholar.html")
 
 
-def login(request):
-    return render(request, 'ginfo/login_register.html')
+@login_required
+def analytics(request):
+    return render(request, "dashboard/analytics.html")
+
+
+@login_required
+def favourites(request):
+    return render(request, "dashboard/favourites.html")
+
+
+@login_required
+def messages(request):
+    return render(request, "dashboard/messages.html")
+
+@login_required
+def settings(request):
+    return render(request, "dashboard/settings.html")
+
