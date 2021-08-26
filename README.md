@@ -1,1 +1,1 @@
-# TIET faculties profile management and analysis system.
+# TIET Google Scholars Profile Management and Analysis System.
