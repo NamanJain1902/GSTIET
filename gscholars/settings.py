@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'analytics.apps.AnalyticsConfig',
     'error_handler.apps.ErrorHandlerConfig',
     'dashboard.apps.DashboardConfig',
     'loginout.apps.LoginoutConfig',
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

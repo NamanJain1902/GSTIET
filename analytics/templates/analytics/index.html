@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html' %}
+{% load static%}
+{% block title %}Analytics{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard/admin_dashboard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'dashboard/analytics.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}    
+    <div class="row">
+       
+
+        <!--visualizations column-->        
+        <div class="col-11">
+            <!--charts-->       
+            <div id="charts" class="container mt-3 text-center">
+                        
+                <!--top two charts-->       
+                <div class="row">
+                    <div class="col-6">
+                        <div id="{{ids.0}}"></div>
+                    </div>
+                    <div class="col-6">
+                        <div id="{{ids.1}}"></div>
+                    </div>
+                </div>
+
+                <!--bottom two charts-->        
+                <div class="row mb-6">
+                    <div class="col-6"> 
+                        <div id="chart3">
+                            <div id="{{ids.2}}"></div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div id="chart4">
+                            <div id="{{ids.3}}"></div>
+                        </div>
+                    <div>
+                </div>
+            
+            </div>
+        <div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        // plots the figure with id
+        // id much match the div id above in the html
+        var figures = {{figuresJSON | safe}};
+        console.log(figures);
+        var ids = {{ids | safe}};
+        console.log(ids);
+
+        // Plotly.plot(ids[0],
+        //         figures[0].data,
+        //         figures[0].layout || {});
+        for(var i in figures) {
+        
+            Plotly.plot(ids[i],
+                figures[i].data,
+                figures[i].layout || {});
+        }
+    </script>
+{% endblock javascripts %}

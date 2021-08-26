@@ -148,8 +148,7 @@ def add_scholar(request):
 
 @login_required
 def analytics(request):
-    return render(request, "dashboard/analytics.html")
-
+    return render(request, "analytics/index.html")
 
 @login_required
 def favourites(request):
