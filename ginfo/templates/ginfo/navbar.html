@@ -34,9 +34,10 @@
       let mainNav = document.getElementById("js-menu");
       let navBarToggle = document.getElementById("js-navbar-toggle");
 
-      navBarToggle.addEventListener("click", function() {
+      navBarToggle.onclick = () => {
+        navBarToggle.classList.toggle("active");
         mainNav.classList.toggle("active");
-      });
+      }
     </script>
 
 </body>
