@@ -28,4 +28,29 @@
             <input id="submit_add" type="submit" value="Add" />
         </form>
     </div>
+
+    <div class="text-center mt-3">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
 {% endblock content %}
+
+{% block javascripts %}
+$.ajax({
+
+    url: "destination url",
+    success: sdialog,
+    error: edialog,
+    // shows the loader element before sending.
+    beforeSend: function() {
+        $("#imgSpinner1").show();
+    },
+    // hides the loader after completion of request, whether successfull or failor.             
+    complete: function() {
+        $("#imgSpinner1").hide();
+    },
+    type: 'POST',
+    dataType: 'json'
+});
+{% endblock javascripts %} 

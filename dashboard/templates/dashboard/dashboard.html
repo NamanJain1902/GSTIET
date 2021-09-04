@@ -70,7 +70,7 @@
             </form>
         </div>
 
-        <table>
+        <table style="width: 100%; " >
         <tbody>
         <thead>
             <td class="topic" style="font-weight: bold; font-size: 20px;">Scholar</td>
@@ -82,10 +82,13 @@
         <tr class="scholar_tab__tr">
             <td style="display: flex; align-items: center;">
                 <img style="width: 50px;" src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{gscholar.id}}&citpid=1"/>
-                <strong><a href="/ginfo/{{gscholar.id}}" style="text-decoration: none;">{{gscholar.name}}</a></strong>
+                <strong><a href="/ginfo/{{gscholar.id}}" class="btn btn-link" style="text-decoration: none;">{{gscholar.name}}</a></strong>
             </td>
             <td>{{gscholar.designation}}</td>
-            <td>{{gscholar.department}}</td>
+            <td >{{gscholar.department}}</td>
+            <td>
+                <a href="/edit_scholar/{{gscholar.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
@@ -111,3 +114,4 @@
     </div>
 </div>
 {% endblock content %}
+{% block javascripts %}{% endblock javascripts %}

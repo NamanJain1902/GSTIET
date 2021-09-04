@@ -45,3 +45,8 @@ class Authored(models.Model):
     scholar = models.ForeignKey('Scholar', related_name='authored', on_delete=models.CASCADE)
     citation = models.ForeignKey('Citation', related_name='authored', on_delete=models.CASCADE, null=True, blank=True)
     
+    def __str__(self):
+        return f"Scholar {self.scholar}  Citation {self.citation}"
+    
+    class Meta:
+        verbose_name_plural = 'Authored'

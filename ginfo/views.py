@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import Http404
 from bs4 import BeautifulSoup
 import requests
-from .models import Scholar, Citation
+from .models import Scholar, Citation, Authored
 from .forms import *
 # Create your views here.
 
@@ -126,11 +126,15 @@ def add_scholar(request):
                             citation_year = year,
                         )
                         citation_info.save()
-                        citation_info.scholar.add(scholar_data)
+                        Authored.objects.create(
+                            scholar=scholar_data,
+                            citation=citation_info
+                        )
+                        # citation_info.scholar.add(scholar_data)
                 
                 messages.success(request, "success")
 
-    return render(request, "ginfo/add_scholar.html")
+    return render(request, "dashboard/add_scholar.html")
 
 
 def login(request):

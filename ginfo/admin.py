@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Scholar, Citation
+from .models import Scholar, Citation, Authored
 from .forms import ScholarCreateForm
 # Register your models here.
 
@@ -14,5 +14,12 @@ class CitationAdmin(admin.ModelAdmin):
   fields =  ['citation_year', 'citation_title']
   list_display = ['citation_year', 'citation_title']
 
+
+class AuthoredAdmin(admin.ModelAdmin):
+  fields =  ['scholar', 'citation']
+  list_display = ['scholar', 'citation']
+
+
 admin.site.register(Scholar, ScholarCreateAdmin)
 admin.site.register(Citation, CitationAdmin)
+admin.site.register(Authored, AuthoredAdmin)

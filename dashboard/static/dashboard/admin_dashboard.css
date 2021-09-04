@@ -6,9 +6,9 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-tr:hover{
+/* tr:hover{
   background-color: yellow;
-}
+} */
 .sidebar{
   position: fixed;
   height: 100%;
@@ -359,9 +359,9 @@ nav .profile-details i{
   color: #333;
 }
 
-.scholar_tab__tr:hover{
+/* .scholar_tab__tr:hover{
   background-color: #5a5656;
-}
+} */
 .scholars_tab_func {
   display: flex;
   justify-content: space-between;
