@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'widget_tweaks',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,11 @@ TEMPLATES = [
         },
     },
 ]
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
 
 WSGI_APPLICATION = 'gscholars.wsgi.application'
 
