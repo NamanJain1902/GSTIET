@@ -5,10 +5,6 @@ from django.contrib.auth.models import User
 from .forms import LoginForm, RegistrationForm
 # Create your views here.
 
-@login_required()
-def index(request):
-    return render(request, "loginout/index.html", {"context": "Hello World"})
-
 def login_view(request):
     form = LoginForm(request.POST or None)
 

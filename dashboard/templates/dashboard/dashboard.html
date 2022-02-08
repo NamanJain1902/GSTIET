@@ -11,8 +11,8 @@
 <div class="overview-boxes">
     <div class="box">
     <div class="right-side">
-        <div class="box-topic">Total Citations</div>
-        <div class="number">{}</div>
+        <div class="box-topic">Total Publications</div>
+        <div class="number">{{citations.count}}</div>
         <div class="indicator">
         <i class='bx bx-up-arrow-alt'></i>
         <span class="text">Some nice text</span>
@@ -24,7 +24,7 @@
     <div class="box">
     <div class="right-side">
         <div class="box-topic">Total Scholars</div>
-        <div class="number">3</div>
+        <div class="number">{{scholars.count}}</div>
         <div class="indicator">
         <i class='bx bx-up-arrow-alt'></i>
         <span class="text">Some nice text</span>
@@ -35,8 +35,8 @@
 
     <div class="box">
     <div class="right-side">
-        <div class="box-topic">Total Profit</div>
-        <div class="number">$12,876</div>
+        <div class="box-topic">Total Citations</div>
+        <div class="number">1,287</div>
         <div class="indicator">
         <i class='bx bx-up-arrow-alt'></i>
         <span class="text">Some nice text</span>
@@ -82,6 +82,7 @@
         <tr class="scholar_tab__tr">
             <td style="display: flex; align-items: center;">
                 <img style="width: 50px;" src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user={{gscholar.id}}&citpid=1"/>
+                <span id="{{gscholar.id}}" onclick="addToFavourite()" style="background: white; border: none; outline: none; font-size: 25px;"><i class='bx bx-star'></i></span>
                 <strong><a href="/ginfo/{{gscholar.id}}" class="btn btn-link" style="text-decoration: none;">{{gscholar.name}}</a></strong>
             </td>
             <td>{{gscholar.designation}}</td>
@@ -114,4 +115,14 @@
     </div>
 </div>
 {% endblock content %}
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script>
+
+    addToFavourite = () =>{
+        ele = document.getElementsByClassName('bx bx-star');
+        val = document.getElementById({{gscholar.id}});
+        // console.log(gid);
+        console.log(val);
+    }
+</script>
+{% endblock javascripts %}

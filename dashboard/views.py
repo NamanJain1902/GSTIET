@@ -15,7 +15,6 @@ def index(request):
         scholars_set = Scholar.objects.all()
         citations_set = Citation.objects.all()
 
-
         if request.method == 'POST':    
             if request.POST.get('search_field', ''):
                 search_field = request.POST.get('search_field', '')
@@ -30,7 +29,7 @@ def index(request):
     
     context = {
         "scholars": scholars_set,
-        # "citations" :  
+        "publications" :  citations_set,
     }
     return render(request, "dashboard/dashboard.html", context)
 
@@ -55,7 +54,7 @@ def dashboard(request):
     
     context = {
         "scholars": scholars_set,
-        # "citations" :  
+        "citations" :  citations_set,
     }
     return render(request, "dashboard/dashboard.html", context)
 
